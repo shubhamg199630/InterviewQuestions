@@ -1,5 +1,6 @@
 What is OSI Model?
 Ans : OSI (Open System Interconnection model) 
+      Youtube : https://www.youtube.com/watch?v=vv4y_uOneC0
       It is used how communication happen between two computer over network. For Example if one is mac and another is windows we need some standard protocol steps for this.
       OSI was introduced in 1984. It is 7 layer model.
       
@@ -26,13 +27,52 @@ Ans : OSI (Open System Interconnection model)
                                                              better compression ratios than the lossless algorithms.
                 3) Encryption and Decryption (Secure Socket Layer Protocol ) : Here we will Encrypt / decryption of data to keep it safe.
                    There are three main components to what the TLS protocol accomplishes( future version of SSL) : Encryption, Authentication, and Integrity.
-                        TLS : Transport Layer Security , but it is not transport layer protocol, but it is layer 6 prestation layer. Same for SSL also.
+                        TLS : Transport Layer Security , but it is not transport layer protocol, but it is layer 6 or layer 5. Same for SSL also.
                                     Encryption: hides the data being transferred from third parties.
-                                    Authentication: ensures that the parties exchanging information are who they claim to be.
+                                    Authentication: (it is done by session layer) ensures that the parties exchanging information are who they claim to be.
                                     Integrity: verifies that the data has not been forged or tampered with.
                          Note : OSI model is a guideline , after layer 4 , any thing is possible.
       
-      Sessiom Layer : 
-                         
+      Sessiom Layer : Session Layer job is to control and maintain connections between systems to share data. It establishes, maintains, and ends sessions across all channels.
+                      Few functions are:
+                      1) Session Establishment: (like starting or closing connection).The session layer establishes connections between devices which is known as sessions. 
+                                                The session which is created allows users to share data, remote access, and file management.
+                      2)Authentication: The process of identification is known as authentication. It takes a guarantee from the user to permit them access to the data. 
+                                          Authentication is very important because it provides security.
+                      3)Authorization: It grants privileges after authentication of the user. Authorization means providing access to the data that is authorized to the specific user.
+                      4)Synchronization: The session maintains proper connectivity between systems, and if any error occurs, then it provides a recovery option which is called a known state.
+                      
+                      Example of protocol for this layer is RPC : 
+                      Remote Procedure Call Protocol. Remote Procedure Call is a software communication protocol that one program can use to request a service from a program located 
+                      in another computer on a network without having to understand the network's details. RPC is used to call other processes on the remote systems like a local system. 
+                      A procedure call is also sometimes known as a function call or a subroutine call.
+      
+      Transport Layer : 
+                       1) Segmentation  :Segmentation, Packaging and Reassembly: The transport layer segments the large amounts of data it sends over the network into smaller pieces 
+                                         on the source machine, and then reassemble them on the destination machine. This function is similar conceptually to the fragmentation 
+                                         function of the network layer; just as the network layer fragments messages to fit the limits of the data link layer, the transport layer 
+                                         segments messages to suit the requirements of the underlying network layer.
+                       2) Flow Control : Mange the flow so that if sender and recieve both able to get data based on there buffer size. it is call flow control.
+                       3) End To End Error control using TCP.
+                       Two protcol 
+                                    TCP and UDP
+                                    TCP : Transmission Control Protocol : Feeback is given , so reliable communication, If data loss resent, Slow Protocol,  used for FTP, HTTP, SMTP etc.
+                                    UDP : User Datagram Protocol : No Feedback, so fast commnication , not reliable comminication , if data loss dont resent, used in Video games, video etc.
+                       Transport layer packet call segment.
+      Network Layer : 
+                      Here purpose is to send data from network to network , Also Call routering layer.
+                      Here we need to update packet 
+                      functions :
+                      1) Logical Address: IP address of both source and destination are added by network layer , so that frame should reach to correct network address.
+                      2) Routing : Send packet to correct path using mask address and routing protocol (flooding can also be used without routing)
+                      3) Path determination : Mutiple path are present to reach to destination. We can use protocol to send packet based on shortest time etc
+                              Example like OSPF : Open Shortest Path First, Border Gateway Protocol BGP etc.
+      
+      Data Link Layer : We will add Physical address to the packet in DDL header. ( MAC address : Also called NIC card) 
+                        Here we call frame
+                      1) Access the Media
+                      2) MAc Media Access Control  : in a network 
+                      3) Error Detection :
+                      1) Physical addressing : 
                                     
 
