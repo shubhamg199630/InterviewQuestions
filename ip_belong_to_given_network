@@ -1,0 +1,91 @@
+How To check whether a given ip belong to that network or not.
+
+first learn about stringstream
+link : https://stackoverflow.com/questions/5328070/how-to-convert-string-to-ip-address-and-vice-versa
+
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+class ip_address
+{
+	public :
+	int ip[4];
+	public :
+	virtual void getIpAddress(string input_ip)
+	{
+		stringstream s(input_ip);
+		int a, b, c, d; // to store four integer;
+		char ch; // to store .
+		s >> a >> ch >>b >> ch >> c >> ch >> d;
+		ip[0] = a;
+		ip[1] = b;
+		ip[2] = c;
+		ip[3] = d;
+	}
+	void printIp ()
+	{
+		for ( int i = 0 ; i < 4; i++)
+		{
+			cout<<ip[i]<<" . ";
+		}
+		cout<<endl;
+	}
+};
+
+class network_address : public ip_address
+{
+	public :
+	int network_prefix;
+	void getIpAddress(string input_ip)
+	{
+		stringstream s(input_ip);
+		int a, b, c, d,e; // to store four integer;
+		char ch; // to store .
+		s >> a >> ch >>b >> ch >> c >> ch >> d >> ch >> e;
+		ip[0] = a;
+		ip[1] = b;
+		ip[2] = c;
+		ip[3] = d;
+		network_prefix = e;
+	}
+};
+
+bool check_ip_network(ip_address input_ip, network_address na)
+{
+	int n = na.network_prefix/8;
+	if ( na.network_prefix % 8 != 0)
+		n++;
+	for ( int i = 1; i <= n; i++)
+	{
+		 // na.ip[i-1]; Network ip i-1 bit ;
+		 // input_ip.ip[i-1]
+		 if ( i* 8 <= na.network_prefix)
+		 {
+			if (na.ip[i-1] != input_ip.ip[i-1])
+				return false;
+		 }
+		else
+		{
+			int bitshift = i*8 - na.network_prefix;
+			cout<<bitshift<< " "<< i <<" ";
+			return (na.ip[i-1] >> bitshift == input_ip.ip[i-1] >> bitshift);
+		}
+	}
+}
+
+int main() {
+	std::string s ="192.168.1.65";
+	
+	ip_address ip;
+	ip.getIpAddress(s);
+	ip.printIp();
+	
+	std::string net ="192.168.1.64/26";
+	
+	network_address network_address_ip;
+	network_address_ip.getIpAddress(net);
+	network_address_ip.printIp();
+	cout<<network_address_ip.network_prefix<<endl;
+	cout<<check_ip_network(ip, network_address_ip);
+}
